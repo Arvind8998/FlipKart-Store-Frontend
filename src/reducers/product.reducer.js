@@ -22,7 +22,6 @@ export const productReducer = (state = initialState, action) => {
           ...action.payload.productsByPrice,
         },
       }
-
       default:
           return state
   }
