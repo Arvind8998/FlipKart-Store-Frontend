@@ -1,5 +1,5 @@
 import React from 'react'
-import Header from '../../Components/Header'
+// import Header from '../../Components/Header'
 import MenuHeader from '../../Components/MenuHeader'
 import Layout from '../../Components/Layout'
 
