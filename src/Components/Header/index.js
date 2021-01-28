@@ -10,7 +10,8 @@ import {
   DropdownMenu,
 } from "../MaterialUI";
 import { useDispatch, useSelector } from "react-redux";
-import { login} from "../../actions/auth.action";
+import { login, signOut} from "../../actions/auth.action";
+import Cart from "../UI/Cart";
 
 /**
  * @author
@@ -49,9 +50,9 @@ const Header = (props) => {
       dispatch(login({ email, password }));
   };
 
-  // const logout = () => {
-  //   dispatch(signout());
-  // };
+  const logout = () => {
+    dispatch(signOut());
+  };
 
   useEffect(() => {
     if (auth.authenticate) {
@@ -82,7 +83,7 @@ const Header = (props) => {
           { label: "Rewards", href: "", icon: null },
           { label: "Notifications", href: "", icon: null },
           { label: "Gift Cards", href: "", icon: null },
-          { label: "Logout", href: "", icon: null },
+          { label: "Logout", href: "", icon: null, onClick: logout },
         ]}
       />
     );
@@ -259,7 +260,7 @@ const Header = (props) => {
           />
           <div>
             <a href={`/cart`} className="cart">
-              {/* <Cart count={Object.keys(cart.cartItems).length} /> */}
+              <Cart count={4} />
               <span style={{ margin: "0 10px" }}>Cart</span>
             </a>
           </div>

@@ -7,6 +7,8 @@ import { authReducer } from './reducers/auth.reducer';
 import { isUserLoggedIn } from './actions/auth.action';
 import ProductDetailsPage from './Containers/ProductDetailsPage';
 import { useEffect } from 'react';
+import CartPage from './Containers/CartPage';
+import { updateCart } from './actions/cart.action';
 
 function App() {
   const dispatch = useDispatch()
@@ -17,14 +19,19 @@ function App() {
       dispatch(isUserLoggedIn())
     }
   },[auth.authenticate])
+
+  useEffect(()=>{
+    dispatch(updateCart())
+  },[])
  
   return (
     <div className="App">
       <Router>
         <Switch>
           <Route path='/' exact component={HomePage} />
-          <Route exact path='/:slug' component={ProductListPage} />
-          <Route exact path="/:productSlug/:productId/p" component={ProductDetailsPage} />
+          <Route path='/cart' component={CartPage} />
+          <Route path="/:productSlug/:productId/p" component={ProductDetailsPage} />
+          <Route path='/:slug' component={ProductListPage} />
           </Switch>
       </Router>
     </div>

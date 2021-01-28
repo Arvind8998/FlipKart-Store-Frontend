@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react"
 import { generatePublicUrl } from "../../../urlConfig"
 import { useDispatch, useSelector } from "react-redux"
 import { getProductsBySlug } from "../../../actions/product.action"
-import {Link} from 'react-router-dom'
-
+import { Link } from "react-router-dom"
+import Card from "../../../Components/UI/Card"
 
 function ProductStore(props) {
   const dispatch = useDispatch()
@@ -25,16 +25,18 @@ function ProductStore(props) {
   return (
     <>
       {Object.keys(product.productsByPrice).map((key, index) => (
-        <div className="card">
-          <div className="cardHeader">
-            <div>
-              {props.match.params.slug} mobile under {priceRange[key]}
-            </div>
-            <button>view all</button>
-          </div>
+        <Card
+          headerLeft={`${props.match.params.slug} mobile under ${priceRange[key]}`}
+          headerRight={<button>view all</button>}
+          style={{ width: "calc(100% -40px)", margin: "20px" }}
+        >
           <div style={{ display: "flex" }}>
             {product.productsByPrice[key].map((product) => (
-              <Link to={`/${product.slug}/${product._id}/p`} style={{display:"block"}} className="productContainer">
+              <Link
+                to={`/${product.slug}/${product._id}/p`}
+                style={{ display: "block" }}
+                className="productContainer"
+              >
                 <div className="productImgContainer">
                   <img
                     src={generatePublicUrl(product.productPictures[0]?.img)}
@@ -52,7 +54,7 @@ function ProductStore(props) {
               </Link>
             ))}
           </div>
-        </div>
+        </Card>
       ))}
     </>
   )
