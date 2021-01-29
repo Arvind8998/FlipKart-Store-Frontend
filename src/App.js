@@ -22,7 +22,7 @@ function App() {
 
   useEffect(()=>{
     dispatch(updateCart())
-  },[])
+  },[auth.authenticate])
  
   return (
     <div className="App">
